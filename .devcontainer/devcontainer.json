@@ -1,0 +1,19 @@
+{
+    "name": "Laravel Inventario API",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/var/www",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "php.validate.executablePath": "/usr/local/bin/php"
+            }
+        }
+    },
+    "forwardPorts": [
+        8000,
+        5432,
+        6379
+    ],
+    "postCreateCommand": "composer install --no-interaction --prefer-dist"
+}
