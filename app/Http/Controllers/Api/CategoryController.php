@@ -28,6 +28,8 @@ class CategoryController extends Controller
     {
         $dto = CategoryDTO::fromRequest($request->validated());
         $category = $this->categoryService->store($dto);
-        return new CategoryResource($category);
+        return new CategoryResource($category)
+            ->response()
+            ->setStatusCode(201);
     }
 }
