@@ -8,6 +8,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
+    /**
+     * Obtener todas las categorías paginadas, con opción de filtrar por estado activo.
+     */
     public function all(int $perPage = 15, bool $isActive = true): LengthAwarePaginator
     {
         /** @var \Illuminate\Database\Eloquent\Builder<Category> $query */
