@@ -10,8 +10,8 @@ class CategoryService
         private readonly CategoryRepositoryInterface $categoryRepository
     ){}
 
-    public function all(int $perPage = 15)
+    public function all(int $perPage = 15, bool $isActive = true)
     {
-        return $this->categoryRepository->all($perPage);
+        return $this->categoryRepository->all($perPage, $isActive);
     }
 }
