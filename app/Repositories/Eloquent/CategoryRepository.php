@@ -10,6 +10,9 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function all(int $perPage = 15): LengthAwarePaginator
     {
-        return Category::paginate($perPage);
+        /** @var \Illuminate\Database\Eloquent\Builder<Category> $query */
+        $query = Category::where('is_active', true);
+
+        return $query->paginate($perPage);
     }
 }
