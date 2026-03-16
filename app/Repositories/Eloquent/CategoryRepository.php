@@ -8,10 +8,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    public function all(int $perPage = 15): LengthAwarePaginator
+    public function all(int $perPage = 15, bool $isActive = true): LengthAwarePaginator
     {
         /** @var \Illuminate\Database\Eloquent\Builder<Category> $query */
-        $query = Category::where('is_active', true);
+        $query = Category::where('is_active', $isActive);
 
         return $query->paginate($perPage);
     }

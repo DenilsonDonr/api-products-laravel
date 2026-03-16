@@ -6,5 +6,5 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface CategoryRepositoryInterface
 {
-    public function all(int $perPage = 15): LengthAwarePaginator;
+    public function all(int $perPage = 15, bool $isActive = true): LengthAwarePaginator;
 }
