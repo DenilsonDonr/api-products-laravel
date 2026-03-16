@@ -16,7 +16,8 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->query('per_page', 15);
-        $categories = $this->categoryService->all($perPage);
+        $isActive = $request->query('is_active', true);
+        $categories = $this->categoryService->all($perPage, $isActive);
         return CategoryResource::collection($categories);
     }
 }
