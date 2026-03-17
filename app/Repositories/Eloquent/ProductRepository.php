@@ -24,4 +24,12 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::create($dto->toArray());
     }
+
+    /**
+     * Obtener un producto por su ID, lanzando una excepción si no se encuentra.
+     */
+    public function findById(int $id): Product
+    {
+        return Product::with('category')->where('is_active', true)->findOrFail($id);
+    }
 }
