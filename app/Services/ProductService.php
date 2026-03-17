@@ -21,4 +21,9 @@ class ProductService
     {
         return $this->productRepository->store($dto);
     }
+
+    public function findById(int $id): Product
+    {
+        return $this->productRepository->findById($id);
+    }
 }
