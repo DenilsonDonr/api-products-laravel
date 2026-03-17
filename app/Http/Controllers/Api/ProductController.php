@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -30,5 +31,15 @@ class ProductController extends Controller
         return (new ProductResource($product))
             ->response()
             ->setStatusCode(201);
+    }
+
+    public function show(int $id)
+    {
+        try {
+            $product = $this->productService->findById($id);
+            return new ProductResource($product);
+        } catch (ModelNotFoundException) {
+            return response()->json(['message' => 'Product not found.'], 404);
+        }
     }
 }
