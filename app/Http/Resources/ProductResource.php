@@ -20,6 +20,13 @@ class ProductResource extends JsonResource
             'name'        => $this->name,
             'slug'        => $this->slug,
             'description' => $this->description,
+            'category'    => $this->whenLoaded('category', function () {
+                return [
+                    'id'   => $this->category->id,
+                    'name' => $this->category->name,
+                    'slug' => $this->category->slug,
+                ];
+            }),
             'sku'         => $this->sku,
             'price'       => $this->price,
             'stock'       => $this->stock,
