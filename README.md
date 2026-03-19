@@ -6,17 +6,18 @@ API REST de inventario construida con **Laravel 12** aplicando **Repository Patt
 
 - PHP 8.5 + Laravel 12
 - PostgreSQL 16
-- Redis 7
 - Nginx
 - Docker
 
 ## Patrones aplicados
 
-- **Repository Pattern** — Abstracción del acceso a datos mediante interfaces
-- **Service Layer** — Lógica de negocio desacoplada de los controllers
-- **DTOs** — Transferencia de datos sin acoplar capas
-- **Form Requests** — Validación desacoplada del controller
-- **API Resources** — Transformación controlada de respuestas JSON
+| Patrón | Tipo | Descripción |
+|--------|------|-------------|
+| **Repository Pattern** | Design Pattern — Estructural (GoF) | Abstrae el acceso a datos detrás de interfaces; desacopla la lógica de negocio de la persistencia |
+| **Service Layer** | Architectural Pattern (Fowler, PoEAA) | Centraliza y orquesta la lógica de negocio; define el límite de la aplicación entre controllers y dominio |
+| **DTO** — Data Transfer Object | Design Pattern (Fowler, PoEAA) | Transporta datos entre capas sin exponer modelos ni acoplar estructuras internas |
+| **Form Request** | Input Object + Validation (Laravel) | Encapsula validación y autorización por operación; el patrón general es *Input Object* con validación integrada |
+| **API Resource** | Presenter / Transformer Pattern | Transforma modelos Eloquent en respuestas JSON controladas; desacopla la representación de la persistencia |
 
 ## Setup
 
