@@ -26,4 +26,9 @@ class ProductService
     {
         return $this->productRepository->findById($id);
     }
+    
+    public function update(int $id, ProductDTO $dto): Product
+    {
+        return $this->productRepository->update($id, $dto);
+    }
 }
