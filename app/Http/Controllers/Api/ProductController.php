@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\DTOs\ProductDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -37,6 +38,17 @@ class ProductController extends Controller
     {
         try {
             $product = $this->productService->findById($id);
+            return new ProductResource($product);
+        } catch (ModelNotFoundException) {
+            return response()->json(['message' => 'Product not found.'], 404);
+        }
+    }
+
+    public function update(UpdateProductRequest $request, int $id)
+    {
+        try {
+            $dto     = ProductDTO::fromRequest($request->validated());
+            $product = $this->productService->update($id, $dto);
             return new ProductResource($product);
         } catch (ModelNotFoundException) {
             return response()->json(['message' => 'Product not found.'], 404);
