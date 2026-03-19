@@ -12,4 +12,5 @@ interface ProductRepositoryInterface
     public function store(ProductDTO $dto): Product;
     public function findById(int $id): Product;
     public function update(int $id, ProductDTO $dto): Product;
+    public function delete(int $id): void;
 }
