@@ -11,4 +11,5 @@ interface ProductRepositoryInterface
     public function all(int $perPage = 15, bool $isActive = true): LengthAwarePaginator;
     public function store(ProductDTO $dto): Product;
     public function findById(int $id): Product;
+    public function update(int $id, ProductDTO $dto): Product;
 }

@@ -32,4 +32,14 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::with('category')->where('is_active', true)->findOrFail($id);
     }
+
+    /**
+     * Actualizar un producto existente por su ID, lanzando una excepción si no se encuentra.
+     */
+    public function update(int $id, ProductDTO $dto): Product
+    {
+        $product = Product::findOrFail($id);
+        $product->update($dto->toArray());
+        return $product;
+    }
 }
