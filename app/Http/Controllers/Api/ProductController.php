@@ -54,4 +54,14 @@ class ProductController extends Controller
             return response()->json(['message' => 'Product not found.'], 404);
         }
     }
+    
+    public function destroy(int $id)
+    {
+        try {
+            $this->productService->delete($id);
+            return response()->json(['message' => 'Product deleted successfully.'], 200);
+        } catch (ModelNotFoundException) {
+            return response()->json(['message' => 'Product not found.'], 404);
+        }
+    }
 }
