@@ -31,4 +31,9 @@ class ProductService
     {
         return $this->productRepository->update($id, $dto);
     }
+
+    public function delete(int $id): void
+    {
+        $this->productRepository->delete($id);
+    }
 }
