@@ -1,6 +1,6 @@
 # 📦 Inventory API
 
-API REST de inventario construida con **Laravel 12** aplicando **Repository Pattern**, **Service Layer**, **DTOs** y **tests automatizados**.
+REST API built with **Laravel 12** applying **Repository Pattern**, **Service Layer**, **DTOs**, and **automated tests**.
 
 ## Stack
 
@@ -9,24 +9,24 @@ API REST de inventario construida con **Laravel 12** aplicando **Repository Patt
 - Nginx
 - Docker
 
-## Patrones aplicados
+## Patterns Applied
 
-| Patrón | Tipo | Descripción |
-|--------|------|-------------|
-| **Repository Pattern** | Design Pattern — Estructural (GoF) | Abstrae el acceso a datos detrás de interfaces; desacopla la lógica de negocio de la persistencia |
-| **Service Layer** | Architectural Pattern (Fowler, PoEAA) | Centraliza y orquesta la lógica de negocio; define el límite de la aplicación entre controllers y dominio |
-| **DTO** — Data Transfer Object | Design Pattern (Fowler, PoEAA) | Transporta datos entre capas sin exponer modelos ni acoplar estructuras internas |
-| **Form Request** | Input Object + Validation (Laravel) | Encapsula validación y autorización por operación; el patrón general es *Input Object* con validación integrada |
-| **API Resource** | Presenter / Transformer Pattern | Transforma modelos Eloquent en respuestas JSON controladas; desacopla la representación de la persistencia |
+| Pattern | Type | Description |
+|---------|------|-------------|
+| **Repository Pattern** | Design Pattern — Structural (GoF) | Abstracts data access behind interfaces; decouples business logic from persistence |
+| **Service Layer** | Architectural Pattern (Fowler, PoEAA) | Centralizes and orchestrates business logic; defines the application boundary between controllers and domain |
+| **DTO** — Data Transfer Object | Design Pattern (Fowler, PoEAA) | Transfers data between layers without exposing models or coupling internal structures |
+| **Form Request** | Input Object + Validation (Laravel) | Encapsulates validation and authorization per operation; the general pattern is an *Input Object* with integrated validation |
+| **API Resource** | Presenter / Transformer Pattern | Transforms Eloquent models into controlled JSON responses; decouples representation from persistence |
 
 ## Setup
 
 ```bash
-# Clonar el repo
+# Clone the repo
 git clone <repo-url> inventory-api
 cd inventory-api
 
-# Setup completo
+# Full setup
 docker compose build
 docker compose up -d
 docker compose exec app composer install
@@ -35,34 +35,34 @@ docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate --seed
 ```
 
-La API estará disponible en `http://localhost:8000`
+API will be available at `http://localhost:8000`
 
 ## Endpoints
 
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/v1/products` | Listar productos |
-| POST | `/api/v1/products` | Crear producto |
-| GET | `/api/v1/products/{id}` | Ver producto |
-| PUT | `/api/v1/products/{id}` | Actualizar producto |
-| DELETE | `/api/v1/products/{id}` | Eliminar producto |
-| GET | `/api/v1/categories` | Listar categorías |
-| POST | `/api/v1/categories` | Crear categoría |
+| GET | `/api/v1/products` | List products |
+| POST | `/api/v1/products` | Create product |
+| GET | `/api/v1/products/{id}` | Get product |
+| PUT | `/api/v1/products/{id}` | Update product |
+| DELETE | `/api/v1/products/{id}` | Delete product |
+| GET | `/api/v1/categories` | List categories |
+| POST | `/api/v1/categories` | Create category |
 
-## Arquitectura
+## Architecture
 
 ```
 app/
 ├─ Repositories/
-│   ├─ Contracts/           ← Interfaces (contratos)
-│   └─ Eloquent/            ← Implementaciones con Eloquent
-├─ Services/                ← Lógica de negocio
+│   ├─ Contracts/           ← Interfaces (contracts)
+│   └─ Eloquent/            ← Eloquent implementations
+├─ Services/                ← Business logic
 ├─ DTOs/                    ← Data Transfer Objects
 ├─ Http/
-│   ├─ Controllers/Api/     ← Controllers delgados
-│   ├─ Requests/            ← Validación
-│   └─ Resources/           ← Transformación JSON
+│   ├─ Controllers/Api/     ← Thin controllers
+│   ├─ Requests/            ← Validation
+│   └─ Resources/           ← JSON transformation
 tests/
-├─ Unit/                    ← Tests del Service Layer
-└─ Feature/                 ← Tests de la API completa
+├─ Unit/                    ← Service Layer tests
+└─ Feature/                 ← Full API tests
 ```
